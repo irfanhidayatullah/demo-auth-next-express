@@ -4,6 +4,7 @@ import { axiosInstance } from "@/lib/axios";
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 interface RegisterArgs {
   name: string;
@@ -22,11 +23,11 @@ const useRegister = () => {
         email: payload.email,
         password: payload.password,
       });
-      alert("Register Success");
+      toast.success("Register Success");
       router.push("/login");
     } catch (error) {
       if (error instanceof AxiosError) {
-        alert(error.response?.data);
+        toast.error(error.response?.data || "Something went wrong");
       }
     } finally {
       setIsLoading(false);
