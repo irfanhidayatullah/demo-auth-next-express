@@ -28,7 +28,7 @@ const RegisterPage = () => {
     <main className="flex justify-center pt-20">
       <Card className="w-[350px]">
         <CardHeader className="items-center">
-          <CardTitle>Sign In</CardTitle>
+          <CardTitle>Sign Up</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={formik.handleSubmit}>
