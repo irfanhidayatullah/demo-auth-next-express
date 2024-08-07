@@ -1,10 +1,10 @@
 "use client";
-
 import { axiosInstance } from "@/lib/axios";
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import useAxios from "@/hooks/useAxios";
 
 interface RegisterArgs {
   name: string;
@@ -15,8 +15,9 @@ interface RegisterArgs {
 const useRegister = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const { axiosInstance } = useAxios();
   const register = async (payload: RegisterArgs) => {
-    setIsLoading(true)
+    setIsLoading(true);
     try {
       await axiosInstance.post("/api/auth/register", {
         name: payload.name,

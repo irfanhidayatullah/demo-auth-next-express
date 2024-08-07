@@ -1,9 +1,6 @@
-import React from 'react'
-
+import Homepage from "@/features/home"
 const Home = () => {
-  return (
-    <div>Home</div>
-  )
+  return <Homepage/>
 }
 
 export default Home
