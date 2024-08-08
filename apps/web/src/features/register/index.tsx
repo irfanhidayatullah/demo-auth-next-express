@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { useFormik } from "formik";
 import { RegisterSchema } from "./schemas/RegisterSchema";
 import useRegister from "@/hooks/api/auth/useRegister";
+import Link from "next/link";
 
 const RegisterPage = () => {
   const { register, isLoading } = useRegister();
@@ -84,6 +85,7 @@ const RegisterPage = () => {
             <Button className="mt-7 w-full" disabled={isLoading}>
               {isLoading ? "Loading..." : "Submit"}
             </Button>
+            <Link href="/login" className="flex justify-center text-xs mt-4">Wis due akun? KW KONCO TENAN!</Link>
           </form>
         </CardContent>
       </Card>
