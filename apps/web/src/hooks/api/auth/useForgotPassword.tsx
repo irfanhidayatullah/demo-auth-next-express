@@ -1,25 +1,35 @@
+import useAxios from "@/hooks/useAxios";
 import { axiosInstance } from "@/lib/axios";
+import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 
+interface ForgotPasswordPayload{
+  email: string
+}
+
 const useForgotPassword = () => {
-  const [isLoading, setIsLoading] = useState(false);
 
   const forgotPassword = async (email: string) => {
-    setIsLoading(true);
-    try {
-      await axiosInstance.post("/auth/forgot-password", { email: email });
-      toast.success("send email success");
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        toast.error(error.response?.data || "Something went wrong");
-      }
-    } finally {
-      setIsLoading(false);
-    }
+   const router = useRouter()
+   const {axiosInstance}=useAxios()
+
+   return useMutation({
+    mutationFn: async (payload: ForgotPasswordPayload)=>{
+      const {data} = await axiosInstance.post("/auth/forgot-password", payload)
+      return data
+    },
+    onSuccess: () => {
+      toast.success("Login success");
+      router.replace("/");
+    },
+    onError: (error: AxiosError<any>) => {
+      toast.error(error.response?.data);
+    },
+   })
   };
-  return { forgotPassword, isLoading };
 };
 
 export default useForgotPassword;

@@ -12,7 +12,7 @@ import useLogin from "@/hooks/api/auth/useLogin";
 import Link from "next/link";
 
 const LoginPage = () => {
-  const { login, isLoading } = useLogin();
+  const { mutateAsync: login, isPending } = useLogin();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -72,8 +72,8 @@ const LoginPage = () => {
                   <Label htmlFor="framework"></Label>
                 </div>
               </div>
-              <Button className=" w-full" disabled={isLoading}>
-                {isLoading ? "Loading..." : "Submit"}
+              <Button className=" w-full" disabled={isPending}>
+                {isPending ? "Loading..." : "Submit"}
               </Button>
               <Link
                 href="/register"

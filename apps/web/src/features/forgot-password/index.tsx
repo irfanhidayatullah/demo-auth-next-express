@@ -10,7 +10,7 @@ import useForgotPassword from "@/hooks/api/auth/useForgotPassword";
 
 
 const ForgotPasswordPage = () => {
-  const { forgotPassword, isLoading } = useForgotPassword();
+  const { forzgotPassword, isLoading } = useForgotPassword();
   const formik = useFormik({
     initialValues: {
       email: "",
