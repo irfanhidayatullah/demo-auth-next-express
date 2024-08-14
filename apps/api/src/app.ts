@@ -13,7 +13,7 @@ import { SampleRouter } from './routers/sample.router';
 import { AuthRouter } from './routers/auth.router';
 
 export default class App {
-  private app: Express;
+  public app: Express;
 
   constructor() {
     this.app = express();
